@@ -2,7 +2,7 @@ require 'sinatra'
 require 'haml'
 
 get '/' do
-  haml :index
+  redirect to('/ui/html/index.html')
 end
 
 __END__

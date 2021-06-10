@@ -1,0 +1,27 @@
+html, body {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    background: #393862;
+}
+
+.funnel {
+    margin: 24px auto;
+}
+
+.flex {
+    display: flex;
+}
+
+.method-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+button {
+    margin-left: 8px;
+    margin-right: 8px;
+}
