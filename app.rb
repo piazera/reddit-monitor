@@ -7,7 +7,7 @@ require 'json'
 #
 #scheduler.every '10s' do
 
-end
+#end
 
 get '/' do
   redirect to('/ui/html/index.html')
