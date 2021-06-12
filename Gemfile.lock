@@ -3,9 +3,15 @@ GEM
   specs:
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    concurrent-ruby (1.1.9)
     crack (0.4.5)
       rexml
     diff-lcs (1.4.4)
+    et-orbi (1.2.4)
+      tzinfo
+    fugit (1.5.0)
+      et-orbi (~> 1.1, >= 1.1.8)
+      raabro (~> 1.4)
     haml (5.2.1)
       temple (>= 0.8.0)
       tilt
@@ -21,6 +27,7 @@ GEM
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     public_suffix (4.0.6)
+    raabro (1.4.0)
     rack (2.2.3)
     rack-protection (2.1.0)
       rack
@@ -39,6 +46,8 @@ GEM
       rspec-support (~> 3.10.0)
     rspec-support (3.10.2)
     ruby2_keywords (0.0.4)
+    rufus-scheduler (3.7.0)
+      fugit (~> 1.1, >= 1.1.6)
     sinatra (2.1.0)
       mustermann (~> 1.0)
       rack (~> 2.2)
@@ -46,6 +55,8 @@ GEM
       tilt (~> 2.0)
     temple (0.8.2)
     tilt (2.0.10)
+    tzinfo (2.0.4)
+      concurrent-ruby (~> 1.0)
     webmock (3.13.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -60,6 +71,7 @@ DEPENDENCIES
   httparty
   json
   rspec
+  rufus-scheduler
   sinatra
   webmock
 

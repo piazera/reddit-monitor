@@ -1,14 +1,11 @@
 require 'sinatra'
 require 'haml'
 require 'json'
-require 'rufus-scheduler'
-
-scheduler = Rufus::Scheduler.new
-
-scheduler.every '10s' do
-  results = RedditBridge.new.search 'cpi'
-  key = SecureRandom.uuid
-  DataStore.new.set key, results.to_json
+#require 'rufus-scheduler'
+#
+#scheduler = Rufus::Scheduler.new
+#
+#scheduler.every '10s' do
 
 end
 
