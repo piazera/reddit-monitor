@@ -17,16 +17,11 @@ require 'webmock/rspec'
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.before(:each) do
-    #json_f = File.read('reddit_search_mock.json')
-    #results = JSON.parse(json_f)
-#
-    #reddit_response = {
-    #  :status => 'success',
-    #  :data => []
-    #}
+    json_f = File.read('./reddit_search_mock.json')
+    results = JSON.parse(json_f)
 
     stub_request(:get, /reddit.com/).
-    to_return(status: 200, body: '[]')
+    to_return(status: 200, body: results.to_json)
   end
 
   # rspec-expectations config goes here. You can use an alternate
