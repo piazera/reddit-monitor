@@ -32,6 +32,6 @@ class RedditBridge
                 "is_video" => data['is_video']
             }
         end
-				output
+        output
     end
 end

@@ -1,13 +1,14 @@
 require 'sinatra'
 require 'haml'
 require 'json'
-#require 'rufus-scheduler'
-#
-#scheduler = Rufus::Scheduler.new
-#
-#scheduler.every '10s' do
+require 'rufus-scheduler'
+require './slib/reddit_synthesizer.rb'
 
-#end
+scheduler = Rufus::Scheduler.new
+
+scheduler.every '10s' do
+  RedditSynthesizer.new.process
+end
 
 get '/' do
   redirect to('/ui/html/index.html')
