@@ -1,16 +1,38 @@
 class MemoryDataStore
+    def initialize
+        @data = {
+            :results    => {},
+            :totals     => {},
+            :after      => {}
+        }
+    end
+
     def store_results(value)
-        @results = {} unless @results
-        @last = Time.now.utc
-        @results[@last] = value
-        @last
+        @data[:results][Time.now.utc] = value
     end
 
-    def all_results
-        @results.values if @results
+    def store_totals(totals)
+        @data[:totals][Time.now.utc] = totals
     end
 
+    def store_after(text, after)
+        @data[:after] = {} unless @data[:after]
+        @data[:after][text] = after
+    end
+
+    def last(collection)
+        @data[collection].values.last if @data[collection].values
+    end
+    
     def last_result
-        @results[@last] if @last
+        last :results
+    end
+
+    def last_totals
+        last :totals
+    end
+
+    def last_after(text)
+        @data[:after][text]
     end
 end
