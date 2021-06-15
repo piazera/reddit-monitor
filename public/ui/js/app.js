@@ -44,7 +44,7 @@ const buildGraph = (response) => {
         const month = yearMonth[1];
         viewData[`${months[month]}/${year}`] = response.totals[k];
     });
-    document.getElementById('last_updated').innerHTML = 'last search results from about ' + response.last_updated;
+    document.getElementById('last_updated').innerHTML = 'last updated: ' + response.last_updated;
 
     const reddits = apiToFunnel(viewData);
     if (reddits) {
