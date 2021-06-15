@@ -13,7 +13,8 @@ class RedditSynthesizer
             after = @data_store.last_after(text)
             results = RedditBridge.new.search text, after
             key = SecureRandom.uuid
-            @data_store.store_results results.to_json
+            #TODO temporarily disabling data store given that data is in memory
+            #@data_store.store_results results.to_json
             @data_store.store_after text, results[:after]
             synthesize text, results
         end
@@ -47,7 +48,3 @@ class RedditSynthesizer
         puts @data_store.last_totals
     end
 end
-
-#synt = RedditSynthesizer.new
-#synt.process
-#synt.show_totals
