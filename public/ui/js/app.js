@@ -5,36 +5,9 @@ const months = {
     '07': 'Jul','08': 'Ago','09': 'Set','10': 'Out','11': 'Nov','12': 'Dez',
 };
 
-const viewData = {
-    'Abril': {
-        'Bolsonaro': 3500,
-        'Lula': 2500,
-        'Mandetta': 500
-    },
-    'Maio': {
-        'Bolsonaro': 3300,
-        'Lula': 3000,
-        'Mandetta': 300
-    },
-    'Junho': {
-        'Bolsonaro': 3300,
-        'Lula': 3100,
-        'Mandetta': 2430
-    }
-};
-const hardCodedReddits = apiToFunnel(viewData);
-var graph = new FunnelGraph({
-    container: '.funnel',
-    gradientDirection: 'horizontal',
-    data: hardCodedReddits,
-    displayPercent: false,
-    direction: 'horizontal',
-    width: 800,
-    height: 300,
-    subLabelValue: 'raw'
-});
+let firstDraw = true;
 
-graph.draw();
+let graph;
 
 const buildGraph = (response) => {
     const viewData = {};
@@ -48,12 +21,25 @@ const buildGraph = (response) => {
 
     const reddits = apiToFunnel(viewData);
     if (reddits) {
-        graph.updateData(reddits);
+        if (firstDraw) {
+            firstDraw = false;
+            graph = new FunnelGraph({
+                container: '.funnel',
+                gradientDirection: 'horizontal',
+                data: reddits,
+                displayPercent: false,
+                direction: 'horizontal',
+                width: 800,
+                height: 300,
+                subLabelValue: 'raw'
+            });
+            graph.draw();
+        } else {
+            graph.updateData(reddits);
+        }
     }
 };
 
-document.getElementById('last_updated').innerHTML = 'wait for about 10s..';
+document.getElementById('last_updated').innerHTML = 'hold on for some seconds..';
 
-setTimeout(() => {
-    setInterval(() => { apiBridge.redditData(buildGraph); }, 10000);
-}, 5000);
+setInterval(() => { apiBridge.redditData(buildGraph); }, 5000);
