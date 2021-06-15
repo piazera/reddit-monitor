@@ -2,16 +2,22 @@ require 'sinatra'
 require 'haml'
 require 'json'
 require 'rufus-scheduler'
-require './slib/reddit_synthesizer.rb'
+require './lib/reddit_synthesizer.rb'
 
 scheduler = Rufus::Scheduler.new
+data_store = MemoryDataStore.new
+synthesizer = RedditSynthesizer.new(data_store)
 
 scheduler.every '10s' do
-  RedditSynthesizer.new.process
+  synthesizer.process
 end
 
 get '/' do
   redirect to('/ui/html/index.html')
+end
+
+get '/data' do
+  { :last_updated => data_store.last_totals_created, :totals => data_store.last_totals }.to_json
 end
 
 __END__

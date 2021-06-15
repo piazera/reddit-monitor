@@ -20,12 +20,20 @@ class MemoryDataStore
         @data[:after][text] = after
     end
 
+    def last_key(collection)
+        @data[collection].keys.last if @data[collection].values
+    end
+
     def last(collection)
         @data[collection].values.last if @data[collection].values
     end
     
     def last_result
         last :results
+    end
+
+    def last_totals_created
+        last_key :totals
     end
 
     def last_totals

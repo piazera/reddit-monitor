@@ -5,7 +5,8 @@ class RedditBridge
     def search(q, after = nil)
         query = {
             "q" => q,
-            "limit" => "100"
+            "limit" => "100",
+            "after" => after
         }
         headers = { 'User-Agent' => 'magrathea challenge bot' }
         response = HTTParty.get('http://www.reddit.com/search.json', :query => query, :headers => headers)
